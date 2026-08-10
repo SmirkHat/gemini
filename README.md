@@ -2,8 +2,6 @@
 
 Experimentální nástroj pro studium AI vodoznaků. Přetáhni obrázek a stáhni ho s vodoznakem  -  vše běží lokálně v prohlížeči.
 
-Podporované formáty: **WebP**, **AVIF**, **JPG**, **PNG**
-
 ## O projektu
 
 Tento projekt zkoumá, jak fungují vodoznaky v AI-generovaných obrázcích. Nejde o oficiální nástroj žádné AI platformy  -  je to nezávislý edukativní výzkum.
