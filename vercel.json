@@ -1,0 +1,5 @@
+{
+  "buildCommand": "VERCEL=1 pnpm build",
+  "installCommand": "pnpm install",
+  "framework": null
+}
