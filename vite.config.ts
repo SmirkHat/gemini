@@ -4,8 +4,6 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite"
 import viteReact from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 
-const preset = process.env.VERCEL ? "vercel" : "node-server"
-
 export default defineConfig({
   server: {
     port: 3003,
@@ -17,7 +15,7 @@ export default defineConfig({
   plugins: [
     devtools(),
     tailwindcss(),
-    tanstackStart({ server: { preset } }),
+    tanstackStart(),
     viteReact(),
   ],
 })
