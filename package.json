@@ -10,7 +10,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite build && bash scripts/build-static.sh",
     "start": "srvx --prod -s ../client dist/server/server.js",
     "typecheck": "tsc --noEmit"
   },
