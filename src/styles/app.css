@@ -1,0 +1,164 @@
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * System-first dark mode.
+ *
+ * The `dark:` variant matches when:
+ *   1. an explicit `.dark` class is set on <html> (JS override), or
+ *   2. the OS prefers dark AND no explicit `.light` override is set.
+ *
+ * This means theming works with pure CSS (no JS, no FOUC) and JS only
+ * adds the ability to override the system preference.
+ */
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not(.light), :root:not(.light) *) {
+      @slot;
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* SmirkHat brand tokens  -  light (default) */
+:root {
+  color-scheme: light;
+
+  --background: #f7f7f5;
+  --foreground: #171717;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+  --primary: #d97706;
+  --primary-foreground: #171717;
+  --secondary: #f0efe9;
+  --secondary-foreground: #171717;
+  --muted: #f0efe9;
+  --muted-foreground: #525252;
+  --accent: #fef3c7;
+  --accent-foreground: #92400e;
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+  --border: #e5e5e0;
+  --input: #e5e5e0;
+  --ring: #d97706;
+  --radius: 0.75rem;
+}
+
+/* SmirkHat brand tokens  -  dark (system baseline, no JS required) */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+
+    --background: #171717;
+    --foreground: #e5e5e5;
+    --card: #222222;
+    --card-foreground: #e5e5e5;
+    --popover: #262626;
+    --popover-foreground: #e5e5e5;
+    --primary: #f59e0b;
+    --primary-foreground: #171717;
+    --secondary: #222222;
+    --secondary-foreground: #e5e5e5;
+    --muted: #2a2a2a;
+    --muted-foreground: #a3a3a3;
+    --accent: #92400e;
+    --accent-foreground: #fde68a;
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
+    --border: #404040;
+    --input: #404040;
+    --ring: #f59e0b;
+  }
+}
+
+/* SmirkHat brand tokens  -  dark (explicit JS override) */
+:root.dark {
+  color-scheme: dark;
+
+  --background: #171717;
+  --foreground: #e5e5e5;
+  --card: #222222;
+  --card-foreground: #e5e5e5;
+  --popover: #262626;
+  --popover-foreground: #e5e5e5;
+  --primary: #f59e0b;
+  --primary-foreground: #171717;
+  --secondary: #222222;
+  --secondary-foreground: #e5e5e5;
+  --muted: #2a2a2a;
+  --muted-foreground: #a3a3a3;
+  --accent: #92400e;
+  --accent-foreground: #fde68a;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --border: #404040;
+  --input: #404040;
+  --ring: #f59e0b;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply bg-background;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply flex min-h-dvh flex-col bg-background text-foreground font-sans antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
