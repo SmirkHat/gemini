@@ -1,5 +1,8 @@
 {
-  "buildCommand": "VERCEL=1 pnpm build",
+  "buildCommand": "pnpm build",
   "installCommand": "pnpm install",
-  "framework": null
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/server" }
+  ]
 }
